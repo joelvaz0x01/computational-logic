@@ -1,3 +1,6 @@
+# Other files
+.final_files
+
 *.annot
 *.cmo
 *.cma

@@ -1,0 +1,76 @@
+(lang dune 3.7)
+(name f_parser)
+(sections (lib .) (libexec .))
+(files
+ (lib
+  (META
+   dune-package
+   f_parser.a
+   f_parser.cma
+   f_parser.cmi
+   f_parser.cmt
+   f_parser.cmx
+   f_parser.cmxa
+   f_parser.ml
+   f_parser__.cmi
+   f_parser__.cmt
+   f_parser__.cmx
+   f_parser__.ml
+   f_parser__Formula.cmi
+   f_parser__Formula.cmt
+   f_parser__Formula.cmx
+   f_parser__Lexer.cmi
+   f_parser__Lexer.cmt
+   f_parser__Lexer.cmx
+   f_parser__Misc.cmi
+   f_parser__Misc.cmt
+   f_parser__Misc.cmx
+   f_parser__Parser.cmi
+   f_parser__Parser.cmt
+   f_parser__Parser.cmti
+   f_parser__Parser.cmx
+   formula.ml
+   lexer.ml
+   misc.ml
+   parser.ml
+   parser.mli))
+ (libexec (f_parser.cmxs)))
+(library
+ (name f_parser)
+ (kind normal)
+ (archives (byte f_parser.cma) (native f_parser.cmxa))
+ (plugins (byte f_parser.cma) (native f_parser.cmxs))
+ (native_archives f_parser.a)
+ (main_module_name F_parser)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name f_parser__)
+     (visibility public)
+     (kind alias)
+     (source (path F_parser__) (impl (path f_parser__.ml-gen))))
+    (name F_parser)
+    (modules
+     (module
+      (obj_name f_parser)
+      (visibility public)
+      (source (path F_parser) (impl (path f_parser.ml))))
+     (module
+      (obj_name f_parser__Formula)
+      (visibility public)
+      (source (path Formula) (impl (path formula.ml))))
+     (module
+      (obj_name f_parser__Lexer)
+      (visibility public)
+      (source (path Lexer) (impl (path lexer.ml))))
+     (module
+      (obj_name f_parser__Misc)
+      (visibility public)
+      (source (path Misc) (impl (path misc.ml))))
+     (module
+      (obj_name f_parser__Parser)
+      (visibility public)
+      (source (path Parser) (intf (path parser.mli)) (impl (path parser.ml))))))
+   (wrapped true))))

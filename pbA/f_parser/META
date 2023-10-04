@@ -1,0 +1,6 @@
+description = ""
+requires = ""
+archive(byte) = "f_parser.cma"
+archive(native) = "f_parser.cmxa"
+plugin(byte) = "f_parser.cma"
+plugin(native) = "f_parser.cmxs"
