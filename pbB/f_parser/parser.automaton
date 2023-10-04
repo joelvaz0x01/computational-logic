@@ -1,0 +1,239 @@
+State 0:
+main' -> . main [ # ]
+-- On VAR shift to state 1
+-- On TRUE shift to state 2
+-- On NOT shift to state 3
+-- On LPAREN shift to state 4
+-- On FALSE shift to state 5
+-- On main shift to state 19
+-- On formula shift to state 20
+
+State 1:
+formula -> VAR . [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+-- On RPAREN reduce production formula -> VAR 
+-- On OR reduce production formula -> VAR 
+-- On IMPL reduce production formula -> VAR 
+-- On IIMPL reduce production formula -> VAR 
+-- On EQUIV reduce production formula -> VAR 
+-- On EOF reduce production formula -> VAR 
+-- On AND reduce production formula -> VAR 
+
+State 2:
+formula -> TRUE . [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+-- On RPAREN reduce production formula -> TRUE 
+-- On OR reduce production formula -> TRUE 
+-- On IMPL reduce production formula -> TRUE 
+-- On IIMPL reduce production formula -> TRUE 
+-- On EQUIV reduce production formula -> TRUE 
+-- On EOF reduce production formula -> TRUE 
+-- On AND reduce production formula -> TRUE 
+
+State 3:
+formula -> NOT . formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+-- On VAR shift to state 1
+-- On TRUE shift to state 2
+-- On NOT shift to state 3
+-- On LPAREN shift to state 4
+-- On FALSE shift to state 5
+-- On formula shift to state 18
+
+State 4:
+formula -> LPAREN . formula RPAREN [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+-- On VAR shift to state 1
+-- On TRUE shift to state 2
+-- On NOT shift to state 3
+-- On LPAREN shift to state 4
+-- On FALSE shift to state 5
+-- On formula shift to state 6
+
+State 5:
+formula -> FALSE . [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+-- On RPAREN reduce production formula -> FALSE 
+-- On OR reduce production formula -> FALSE 
+-- On IMPL reduce production formula -> FALSE 
+-- On IIMPL reduce production formula -> FALSE 
+-- On EQUIV reduce production formula -> FALSE 
+-- On EOF reduce production formula -> FALSE 
+-- On AND reduce production formula -> FALSE 
+
+State 6:
+formula -> formula . OR formula [ RPAREN OR IMPL IIMPL EQUIV AND ]
+formula -> formula . AND formula [ RPAREN OR IMPL IIMPL EQUIV AND ]
+formula -> formula . IMPL formula [ RPAREN OR IMPL IIMPL EQUIV AND ]
+formula -> formula . IIMPL formula [ RPAREN OR IMPL IIMPL EQUIV AND ]
+formula -> formula . EQUIV formula [ RPAREN OR IMPL IIMPL EQUIV AND ]
+formula -> LPAREN formula . RPAREN [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+-- On RPAREN shift to state 7
+-- On OR shift to state 8
+-- On IMPL shift to state 10
+-- On IIMPL shift to state 12
+-- On EQUIV shift to state 14
+-- On AND shift to state 16
+
+State 7:
+formula -> LPAREN formula RPAREN . [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+-- On RPAREN reduce production formula -> LPAREN formula RPAREN 
+-- On OR reduce production formula -> LPAREN formula RPAREN 
+-- On IMPL reduce production formula -> LPAREN formula RPAREN 
+-- On IIMPL reduce production formula -> LPAREN formula RPAREN 
+-- On EQUIV reduce production formula -> LPAREN formula RPAREN 
+-- On EOF reduce production formula -> LPAREN formula RPAREN 
+-- On AND reduce production formula -> LPAREN formula RPAREN 
+
+State 8:
+formula -> formula OR . formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+-- On VAR shift to state 1
+-- On TRUE shift to state 2
+-- On NOT shift to state 3
+-- On LPAREN shift to state 4
+-- On FALSE shift to state 5
+-- On formula shift to state 9
+
+State 9:
+formula -> formula . OR formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula OR formula . [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . AND formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . IMPL formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . IIMPL formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . EQUIV formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+-- On IMPL shift to state 10
+-- On IIMPL shift to state 12
+-- On EQUIV shift to state 14
+-- On AND shift to state 16
+-- On RPAREN reduce production formula -> formula OR formula 
+-- On OR reduce production formula -> formula OR formula 
+-- On EOF reduce production formula -> formula OR formula 
+
+State 10:
+formula -> formula IMPL . formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+-- On VAR shift to state 1
+-- On TRUE shift to state 2
+-- On NOT shift to state 3
+-- On LPAREN shift to state 4
+-- On FALSE shift to state 5
+-- On formula shift to state 11
+
+State 11:
+formula -> formula . OR formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . AND formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . IMPL formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula IMPL formula . [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . IIMPL formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . EQUIV formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+-- On IIMPL shift to state 12
+-- On EQUIV shift to state 14
+-- On RPAREN reduce production formula -> formula IMPL formula 
+-- On OR reduce production formula -> formula IMPL formula 
+-- On IMPL reduce production formula -> formula IMPL formula 
+-- On EOF reduce production formula -> formula IMPL formula 
+-- On AND reduce production formula -> formula IMPL formula 
+
+State 12:
+formula -> formula IIMPL . formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+-- On VAR shift to state 1
+-- On TRUE shift to state 2
+-- On NOT shift to state 3
+-- On LPAREN shift to state 4
+-- On FALSE shift to state 5
+-- On formula shift to state 13
+
+State 13:
+formula -> formula . OR formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . AND formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . IMPL formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . IIMPL formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula IIMPL formula . [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . EQUIV formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+-- On EQUIV shift to state 14
+-- On RPAREN reduce production formula -> formula IIMPL formula 
+-- On OR reduce production formula -> formula IIMPL formula 
+-- On IMPL reduce production formula -> formula IIMPL formula 
+-- On IIMPL reduce production formula -> formula IIMPL formula 
+-- On EOF reduce production formula -> formula IIMPL formula 
+-- On AND reduce production formula -> formula IIMPL formula 
+
+State 14:
+formula -> formula EQUIV . formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+-- On VAR shift to state 1
+-- On TRUE shift to state 2
+-- On NOT shift to state 3
+-- On LPAREN shift to state 4
+-- On FALSE shift to state 5
+-- On formula shift to state 15
+
+State 15:
+formula -> formula . OR formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . AND formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . IMPL formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . IIMPL formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . EQUIV formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula EQUIV formula . [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+-- On RPAREN reduce production formula -> formula EQUIV formula 
+-- On OR reduce production formula -> formula EQUIV formula 
+-- On IMPL reduce production formula -> formula EQUIV formula 
+-- On IIMPL reduce production formula -> formula EQUIV formula 
+-- On EQUIV reduce production formula -> formula EQUIV formula 
+-- On EOF reduce production formula -> formula EQUIV formula 
+-- On AND reduce production formula -> formula EQUIV formula 
+
+State 16:
+formula -> formula AND . formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+-- On VAR shift to state 1
+-- On TRUE shift to state 2
+-- On NOT shift to state 3
+-- On LPAREN shift to state 4
+-- On FALSE shift to state 5
+-- On formula shift to state 17
+
+State 17:
+formula -> formula . OR formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . AND formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula AND formula . [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . IMPL formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . IIMPL formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . EQUIV formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+-- On IMPL shift to state 10
+-- On IIMPL shift to state 12
+-- On EQUIV shift to state 14
+-- On RPAREN reduce production formula -> formula AND formula 
+-- On OR reduce production formula -> formula AND formula 
+-- On EOF reduce production formula -> formula AND formula 
+-- On AND reduce production formula -> formula AND formula 
+
+State 18:
+formula -> formula . OR formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . AND formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> NOT formula . [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . IMPL formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . IIMPL formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . EQUIV formula [ RPAREN OR IMPL IIMPL EQUIV EOF AND ]
+-- On RPAREN reduce production formula -> NOT formula 
+-- On OR reduce production formula -> NOT formula 
+-- On IMPL reduce production formula -> NOT formula 
+-- On IIMPL reduce production formula -> NOT formula 
+-- On EQUIV reduce production formula -> NOT formula 
+-- On EOF reduce production formula -> NOT formula 
+-- On AND reduce production formula -> NOT formula 
+
+State 19:
+main' -> main . [ # ]
+-- On # accept main
+
+State 20:
+formula -> formula . OR formula [ OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . AND formula [ OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . IMPL formula [ OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . IIMPL formula [ OR IMPL IIMPL EQUIV EOF AND ]
+formula -> formula . EQUIV formula [ OR IMPL IIMPL EQUIV EOF AND ]
+main -> formula . EOF [ # ]
+-- On OR shift to state 8
+-- On IMPL shift to state 10
+-- On IIMPL shift to state 12
+-- On EQUIV shift to state 14
+-- On EOF shift to state 21
+-- On AND shift to state 16
+
+State 21:
+main -> formula EOF . [ # ]
+-- On # reduce production main -> formula EOF 
+
